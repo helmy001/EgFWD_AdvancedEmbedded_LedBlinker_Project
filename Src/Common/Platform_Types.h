@@ -22,7 +22,7 @@
 #define WORD_LENGTH_BITS      32u
 #define WORD_LENGTH_BYTES     4u
 #define MSB_FIRST             0u    /* big endian bit ordering */
-#define LSB_FIRST        1u    /* little endian bit ordering */
+#define LSB_FIRST 		        1u    /* little endian bit ordering */
 
 #define HIGH_BYTE_FIRST  0u    /* big endian byte ordering */
 #define LOW_BYTE_FIRST   1u    /* little endian byte ordering */

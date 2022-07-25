@@ -12,9 +12,9 @@
 /**********************************************************************************************************************
  *  INCLUDES
  *********************************************************************************************************************/
-#include "Std_Types.h"
-#include "IntCrtl.h"
-#include "Mcu_Hw.h"
+
+#include "IntCtrl.h"
+
 
 /**********************************************************************************************************************
 *  LOCAL MACROS CONSTANT\FUNCTION
@@ -56,16 +56,19 @@ void IntCrtl_Init(void)
 {
 
 	/*TODO Configure Grouping\SubGrouping System in APINT register in SCB*/
-    APINT = 0xFA05|0x00001234;
-    
-    /*TODO : Assign Group\Subgroup priority in NVIC_PRIx Nvic and SCB_SYSPRIx Registers*/  
+    //SCB_APINT.R = 0xFA05|(1<<9);
+		NVIC_EN0.B.INT0=1;
+    NVIC_EN0.B.INT1=1;
+		NVIC_EN0.B.INT4=1;
+		NVIC_PEND0|=0x01;
+		
+  	//NVIC_EN0.B.INT4=1;
+			
+	/*TODO : Assign Group\Subgroup priority in NVIC_PRIx Nvic and SCB_SYSPRIx Registers*/  
 
 
 	/*TODO : Enable\Disable based on user configurations in NVIC_ENx and SCB_Sys Registers */
-
-
 	
-
 }
 
 /**********************************************************************************************************************

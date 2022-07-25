@@ -34,6 +34,16 @@
 # define STD_ON       1u
 # define STD_OFF      0u
 
+#define SIT_BIT(REG,BIT)  (REG|=(1<<BIT))
+
+#define CLEAR_BIT(REG,BIT)  (REG&=(~(1<<BIT)))
+
+#define TOGGLE_BIT(REG,BIT) (REG^=(1<<BIT))		
+
+#define BIT_IS_SET(REG,BIT) (REG&(1<<BIT))		  //return true if bit is set
+
+#define BIT_IS_CLEAR(REG,BIT) (!(REG&(1<<BIT)))  //return true if bit is clear
+
 /**********************************************************************************************************************
  *  GLOBAL DATA TYPES AND STRUCTURES
  *********************************************************************************************************************/
@@ -41,6 +51,8 @@
 typedef uint8 Std_ReturnType;
 #define E_OK          0u
 #define E_NOT_OK      1u
+
+
 
 /**********************************************************************************************************************
  *  GLOBAL DATA PROTOTYPES
