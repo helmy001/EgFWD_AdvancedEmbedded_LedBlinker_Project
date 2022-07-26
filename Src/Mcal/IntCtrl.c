@@ -1,10 +1,10 @@
 /**********************************************************************************************************************
  *  FILE DESCRIPTION
  *  -----------------------------------------------------------------------------------------------------------------*/
-/**        \file  IntCrtl.c
- *        \brief  Nested Vector Interrupt Controller Driver
+/**        File :  IntCrtl.c
+*        brief :  Nested Vector Interrupt Controller Driver
  *
- *      \details  The Driver Configure All MCU interrupts Priority into gorups and subgroups
+ *      Details:  The Driver Configure All MCU interrupts Priority into gorups and subgroups
  *                Enable NVIC Interrupt Gate for Peripherals
  *
  *********************************************************************************************************************/
@@ -27,7 +27,7 @@
 /**********************************************************************************************************************
  *  GLOBAL DATA
  *********************************************************************************************************************/
-
+	
 /**********************************************************************************************************************
  *  LOCAL FUNCTION PROTOTYPES
  *********************************************************************************************************************/
@@ -41,35 +41,47 @@
  *********************************************************************************************************************/
 
 
-/******************************************************************************
-* \Syntax          : void IntCrtl_Init(void)                                      
-* \Description     : initialize Nvic\SCB Module by parsing the Configuration 
-*                    into Nvic\SCB registers                                    
-*                                                                             
-* \Sync\Async      : Synchronous                                               
-* \Reentrancy      : Non Reentrant                                             
-* \Parameters (in) : None                     
-* \Parameters (out): None                                                      
-* \Return value:   : None
-*******************************************************************************/
 void IntCrtl_Init(void)
 {
-
-	/*TODO Configure Grouping\SubGrouping System in APINT register in SCB*/
-    //SCB_APINT.R = 0xFA05|(1<<9);
-		NVIC_EN0.B.INT0=1;
-    NVIC_EN0.B.INT1=1;
-		NVIC_EN0.B.INT4=1;
-		NVIC_PEND0|=0x01;
+	
+	// Configuring the split of group priority from subpriority in APINT REG
+	SCB_APINT.R=(APINT_REG_KEY|(Int_xGroupPriority_xSub<<8));
+	
+	
+	// Enable all interrupts defined by the user and sit there priority in PRIx Reg for each interrupt
+	for(uint8 i=0;i<Num_OfInt_TO_ENABLE;i++	)
+	{
+		uint8 int_number= interrupt_config[i].Int_Num;
 		
-  	//NVIC_EN0.B.INT4=1;
-			
-	/*TODO : Assign Group\Subgroup priority in NVIC_PRIx Nvic and SCB_SYSPRIx Registers*/  
-
+		//Assign Group\Subgroup priority in NVIC_PRIx Nvic
+		uint8 Priority_INTx=int_number%4;
+		switch(Priority_INTx)
+		{
+			case 0:
+				NVIC_REGS.PRIx[int_number/4].B.INTA=interrupt_config[i].Priority;
+				break;
+			case 1:
+				NVIC_REGS.PRIx[int_number/4].B.INTB=interrupt_config[i].Priority;
+				break;
+			case 2:
+				NVIC_REGS.PRIx[int_number/4].B.INTC=interrupt_config[i].Priority;
+				break;
+			case 3:
+				NVIC_REGS.PRIx[int_number/4].B.INTD=interrupt_config[i].Priority;
+				break;
+		}
+		
+		//Enable the Interrupt bit in ENx Register
+		SIT_BIT( NVIC_REGS.ENx[int_number/32].R,int_number%32 );
+	}
+	
 
 	/*TODO : Enable\Disable based on user configurations in NVIC_ENx and SCB_Sys Registers */
 	
 }
+
+
+
 
 /**********************************************************************************************************************
  *  END OF FILE: IntCrtl.c
