@@ -669,6 +669,7 @@ typedef struct
 #define SYS_CTRL_RCC  															 (*((volatile RCC_Tag*)(SYSTEM_CONTROL_REGS_BASE+0x060)))
 #define SYS_CTRL_RCC2																 (*((volatile RCC2_Tag*)(SYSTEM_CONTROL_REGS_BASE+0x070)))
 #define SYS_CTRL_MOSCCTL													 	 (*((volatile MOSCCTL_Tag*)(SYSTEM_CONTROL_REGS_BASE+0x07C)))
+#define SYS_CTRL_RCGCGPIO													   (*((volatile uint32*)(SYSTEM_CONTROL_REGS_BASE+0x608)))
 #define SYS_CTRL_PRESENT_REGS												 ((volatile uint32*)(SYSTEM_CONTROL_REGS_BASE+0x300))
 
 typedef enum
@@ -693,7 +694,44 @@ typedef enum
 }Peripherals_Present_Types;
 
 
+/********************************************************************
+ *  									GPIO																					*
+ *******************************************************************/
  
+
+typedef struct
+{
+	volatile uint32 GPIODATA[256];
+	volatile uint32 GPIODIR;
+	volatile uint32 GPIOIS;
+	volatile uint32 GPIOIBE;
+	volatile uint32 GPIOIEV;
+	volatile uint32 GPIOIM;
+	volatile uint32 GPIORIS;
+	volatile uint32 GPIOMIS;
+	volatile uint32 GPIOICR;
+	volatile uint32 GPIOAFSEL;
+	volatile uint32 Reserved[55];
+	volatile uint32 GPIODRxR[3];
+	volatile uint32 GPIO_INTERNAL[3];
+	volatile uint32	GPIOSLR ;
+	volatile uint32 GPIODEN;
+	volatile uint32 GPIOLOCK;
+	volatile uint32 GPIOCR;
+	volatile uint32 GPIOAMSEL;
+	volatile uint32 GPIOPCTL;
+	volatile uint32 GPIOADCCTL;
+	volatile uint32 GPIODMACTL;	
+}GPIO_REG_MAP;
+
+
+#define GPIO_PORTA										((volatile GPIO_REG_MAP*)0x40004000)	
+#define GPIO_PORTB										((volatile GPIO_REG_MAP*)0x40005000)	
+#define GPIO_PORTC										((volatile GPIO_REG_MAP*)0x40006000)	
+#define GPIO_PORTD										((volatile GPIO_REG_MAP*)0x40007000)	
+#define GPIO_PORTE										((volatile GPIO_REG_MAP*)0x40024000)	
+#define GPIO_PORTF										((volatile GPIO_REG_MAP*)0x40025000)	
+
 
 /**********************************************************************************************************************
  *  GLOBAL DATA PROTOTYPES

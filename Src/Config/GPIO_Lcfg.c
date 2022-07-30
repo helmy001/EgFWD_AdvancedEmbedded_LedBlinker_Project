@@ -2,54 +2,46 @@
 
  *  FILE DESCRIPTION
  *  -------------------------------------------------------------------------------------------------------------------
- *         File:  SysCtrl_Lcfg.c
- *       Module:  System Control Lcfg
+ *         File:  GPIO_Lcfg.c
+ *       Module:  Gpio config
  *
  *  Description:  ----
  *  
  *********************************************************************************************************************/
- 
- 
- /**********************************************************************************************************************
+
+
+
+
+
+/**********************************************************************************************************************
  * INCLUDES
  *********************************************************************************************************************/
- #include "SysCtrl_Cfg.h"
  
  
- 
- 
+#include "GPIO_Cfg.h"
+
+
  
  /**********************************************************************************************************************
  *  GLOBAL DATA TYPES AND STRUCTURES
  *********************************************************************************************************************/
  
- 
- /*****************
-	Watch_dog_Present
-	Timer_16_32_Present 
-	GPIO_Present				
-	MPU_Present					
-	Hibernation_Present
-	Uart_Present				
-	SSI_Present					
-	I2C_Present					
-	Serial_Bus_Present	
-	CAN_Present 			
-	ADC_Present					
-	Analog_Comp_Present	
-	PWM_Present					
-	QEI_Present					
-	EEPROM_Present		
-	Timer_32_64_Present 	
- ********************/
- 
- 
- 
-SYS_CTRL_CLK_CONFIG	SysCtrl_Config[Num_Of_Peripherals_TO_EN]={
-																																{GPIO_Present,0},
-																																{GPIO_Present,5},
-																														 };
+volatile GPIO_REG_MAP	*GPIO_Config[Num_Of_Ports]={
+																									GPIO_PORTA,
+																									GPIO_PORTB,
+																									GPIO_PORTC,
+																									GPIO_PORTD,
+																									GPIO_PORTE,
+																									GPIO_PORTF
+																								};
 
-																			
-																			
-																			
+																													//PIN_NUM	,Direction  ,ouput_current,internal_config
+volatile PIN_CONFIG Pin_Config[Num_Of_Pins_To_Init] ={	
+																													{PORTF_F1,OUTPUT_PIN,Current_4mA,  Pull_Up},
+																													{PORTF_F4,INPUT_PIN,Current_4mA,  Normal}	
+																										 };
+				 
+ 
+ 
+ 
+ 

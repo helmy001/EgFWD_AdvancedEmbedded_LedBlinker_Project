@@ -68,10 +68,13 @@ void Sys_Ctrl_Init(void)
 	#endif
 	
 	
-	//Enable Clock Gate for Selected Peripherals
+	
 	for(uint8 i=0;i<Num_Of_Peripherals_TO_EN;i++)
 	{
+		//Enable Clock Gate for Selected Peripherals
 		SYS_CTRL_PRESENT_REGS[SysCtrl_Config[i].Peripheral_Type]|=(1<<SysCtrl_Config[i].Module_Num);
+		//Enable Run Mode Clock Gating Control
+		SIT_BIT(SYS_CTRL_RCGCGPIO,SysCtrl_Config[i].Module_Num);
 	}
 	
 	
