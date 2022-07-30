@@ -2,35 +2,54 @@
 
  *  FILE DESCRIPTION
  *  -------------------------------------------------------------------------------------------------------------------
- *         File:  IntCtrl_Lcfg.c
- *       Module:  -
+ *         File:  SysCtrl_Lcfg.c
+ *       Module:  System Control Lcfg
  *
- *  Description:  <Write File DESCRIPTION here>     
+ *  Description:  ----
  *  
  *********************************************************************************************************************/
  
  
+ /**********************************************************************************************************************
+ * INCLUDES
+ *********************************************************************************************************************/
+ #include "SysCtrl_Cfg.h"
+ 
+ 
+ 
+ 
  
  /**********************************************************************************************************************
- * 																							INCLUDES
+ *  GLOBAL DATA TYPES AND STRUCTURES
  *********************************************************************************************************************/
  
- #include "IntCtrl_Cfg.h"
+ 
+ /*****************
+	Watch_dog_Present
+	Timer_16_32_Present 
+	GPIO_Present				
+	MPU_Present					
+	Hibernation_Present
+	Uart_Present				
+	SSI_Present					
+	I2C_Present					
+	Serial_Bus_Present	
+	CAN_Present 			
+	ADC_Present					
+	Analog_Comp_Present	
+	PWM_Present					
+	QEI_Present					
+	EEPROM_Present		
+	Timer_32_64_Present 	
+ ********************/
  
  
+ 
+SYS_CTRL_CLK_CONFIG	SysCtrl_Config[Num_Of_Peripherals_TO_EN]={
+																																{Timer_16_32_Present,0},
+																																{ADC_Present,0},
+																														 };
 
- /**********************************************************************************************************************
- *  																GLOBAL DATA TYPES AND STRUCTURES
- *********************************************************************************************************************/
- 
- 
-  INT_CONFIG interrupt_config[Num_OfInt_TO_ENABLE]={ 
-																											{Timer_0A_16_32_Bit,INT_PRI_XXX_Group0_Sub0},
-																											{GPIO_PORT_B,INT_PRI_XXX_Group1_Sub0},
-																											{GPIO_PORT_C,INT_PRI_XXX_Group2_Sub0},
-																											{GPIO_PORT_D,INT_PRI_XXX_Group3_Sub0},
-																											{GPIO_PORT_E,INT_PRI_XXX_Group4_Sub0},
-																											
-																									 };
-																							
-																	
+																			
+																			
+																			

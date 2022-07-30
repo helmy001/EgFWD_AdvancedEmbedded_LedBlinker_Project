@@ -45,7 +45,9 @@
  *********************************************************************************************************************/
  
 	void IntCrtl_Init(void);
- 
+	void NVIC_Enable_Interrupt(uint8 Interrupt_Num,uint8 Priority);
+	void NVIC_Disable_Interrupt(uint8 Interrupt_Num);
+	
 #endif  /* IntCrtl_H */
 
 /**********************************************************************************************************************

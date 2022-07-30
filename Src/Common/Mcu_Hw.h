@@ -353,10 +353,77 @@ typedef struct
 
 
 
-///***/////
+
+typedef struct
+{
+	uint32 MOSCDIS:1 ;
+	uint32 				:3;
+	uint32 OSCSRC :2;
+	uint32 XTAL 	:5;
+	uint32 BYPASS	:1;
+	uint32 				:1;
+	uint32 PWRDN	:1;
+	uint32 				:3;
+	uint32 PWMDIV	:3;
+	uint32 USEPWMDIV :1;
+	uint32 					 :1;
+	uint32 USESYSDIV :1;
+	uint32 SYSDIV		 :4;
+	uint32 ACG 			 :1;
+	uint32 					 :4;
+	
+}RCC_BF;
+
+typedef struct
+{
+	uint32 				 :4;
+	uint32 OSCSRC2 :3;
+	uint32 			 		:4;
+	uint32 BYPASS2	:1;
+	uint32 					:1;
+	uint32 PWRDN2		:1;
+	uint32 USBPWRDN	:1;
+	uint32 					:7;
+	uint32 SYSDIV2LSB	 :1;
+	uint32 SYSDIV2		 :6;
+	uint32 						 :1;
+	uint32 DIV400 		 :1;
+	uint32 USERCC2		 :1;
+	
+}RCC2_BF;
 
 
 
+
+typedef struct
+{
+	uint32  CVAL		:1;
+	uint32 	MOSCIM	:1;
+	uint32  NOXTAL  :1;
+	uint32 					:29;
+
+}MOSCCTL_BF;
+
+
+
+typedef union
+{
+	volatile uint32 R;
+	volatile MOSCCTL_BF B;
+}MOSCCTL_Tag;
+
+
+typedef union
+{
+	volatile uint32 R;
+	volatile RCC_BF B;
+}RCC2_Tag;
+
+typedef union
+{
+	volatile uint32 R;
+	volatile RCC_BF B;
+}RCC_Tag;
 typedef union
 {
 	uint32 R;
@@ -490,7 +557,7 @@ typedef struct
 
 
 /**********************************************************************************************************************
- *  GLOBAL CONSTANT MACROS
+ *  																			GLOBAL CONSTANT MACROS																											*
  *********************************************************************************************************************/
 
 
@@ -587,8 +654,46 @@ typedef struct
 #define SCB_SYSPRI3											(*((volatile SCB_SYSPRI3_BF*)(CORTEXM4_PERI_BASE_ADDRESS+0xD20)))
 
 
+/********************************************************************
+ *  									SYSTEM CONTROL 																*
+ *******************************************************************/
+
+//RESET cause (RESC ) register is set with the reset casue
+//Watchdog Timer Software Reset with SRWD register 
+//The entire microcontroller, including the core, can be reset by software by setting the SYSRESREQ bit in the (APINT) register
+//The core only can be reset by software by setting the VECTRESET bit in the APINT register
+//The Watchdog module time-out interrupt when the INTTYPE bit in the Watchdog Control (WDTCTL) register is set
 
 
+#define SYSTEM_CONTROL_REGS_BASE  								    0x400FE000
+#define SYS_CTRL_RCC  															 (*((volatile RCC_Tag*)(SYSTEM_CONTROL_REGS_BASE+0x060)))
+#define SYS_CTRL_RCC2																 (*((volatile RCC2_Tag*)(SYSTEM_CONTROL_REGS_BASE+0x070)))
+#define SYS_CTRL_MOSCCTL													 	 (*((volatile MOSCCTL_Tag*)(SYSTEM_CONTROL_REGS_BASE+0x07C)))
+#define SYS_CTRL_PRESENT_REGS												 ((volatile uint32*)(SYSTEM_CONTROL_REGS_BASE+0x300))
+
+typedef enum
+{
+	Watch_dog_Present=0 ,
+	Timer_16_32_Present ,
+	GPIO_Present				,
+	MPU_Present					,
+	Hibernation_Present=5	,
+	Uart_Present				,
+	SSI_Present					,
+	I2C_Present					,
+	Serial_Bus_Present=10	,
+	CAN_Present 			=13	,
+	ADC_Present					,
+	Analog_Comp_Present	,
+	PWM_Present					,
+	QEI_Present					,
+	EEPROM_Present		=22	,
+	Timer_32_64_Present 	,
+	
+}Peripherals_Present_Types;
+
+
+ 
 
 /**********************************************************************************************************************
  *  GLOBAL DATA PROTOTYPES
