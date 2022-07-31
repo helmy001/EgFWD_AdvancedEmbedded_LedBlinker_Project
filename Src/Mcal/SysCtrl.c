@@ -74,7 +74,7 @@ void Sys_Ctrl_Init(void)
 		//Enable Clock Gate for Selected Peripherals
 		SYS_CTRL_PRESENT_REGS[SysCtrl_Config[i].Peripheral_Type]|=(1<<SysCtrl_Config[i].Module_Num);
 		//Enable Run Mode Clock Gating Control
-		SIT_BIT(SYS_CTRL_RCGCGPIO,SysCtrl_Config[i].Module_Num);
+		SIT_BIT(SYS_CTRL_RUN_MODE_CLK[SysCtrl_Config[i].Peripheral_Type],SysCtrl_Config[i].Module_Num);
 	}
 	
 	

@@ -30,7 +30,7 @@
  
  #define LOW 0
  #define HIGH 1
- 
+ #define Num_Of_Ports 6
  
  typedef enum
  {

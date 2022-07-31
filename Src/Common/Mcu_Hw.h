@@ -669,7 +669,7 @@ typedef struct
 #define SYS_CTRL_RCC  															 (*((volatile RCC_Tag*)(SYSTEM_CONTROL_REGS_BASE+0x060)))
 #define SYS_CTRL_RCC2																 (*((volatile RCC2_Tag*)(SYSTEM_CONTROL_REGS_BASE+0x070)))
 #define SYS_CTRL_MOSCCTL													 	 (*((volatile MOSCCTL_Tag*)(SYSTEM_CONTROL_REGS_BASE+0x07C)))
-#define SYS_CTRL_RCGCGPIO													   (*((volatile uint32*)(SYSTEM_CONTROL_REGS_BASE+0x608)))
+#define SYS_CTRL_RUN_MODE_CLK							  				 ((volatile uint32*)(SYSTEM_CONTROL_REGS_BASE+0x600))
 #define SYS_CTRL_PRESENT_REGS												 ((volatile uint32*)(SYSTEM_CONTROL_REGS_BASE+0x300))
 
 typedef enum
@@ -731,6 +731,55 @@ typedef struct
 #define GPIO_PORTD										((volatile GPIO_REG_MAP*)0x40007000)	
 #define GPIO_PORTE										((volatile GPIO_REG_MAP*)0x40024000)	
 #define GPIO_PORTF										((volatile GPIO_REG_MAP*)0x40025000)	
+
+/********************************************************************
+ *  									Genral Purpose Timers													*
+ *******************************************************************/
+typedef struct
+{
+	volatile uint32 GPTMCFG;
+	volatile uint32 GPTMTAMR;
+	volatile uint32 GPTMTBMR;
+	volatile uint32 GPTMCTL;
+	volatile uint32 GPTMSYNC;
+	volatile uint32 RESERVED1;
+	volatile uint32 GPTMIMR;
+	volatile uint32 GPTMRIS;
+	volatile uint32 GPTMMIS;
+	volatile uint32 GPTMICR;
+	volatile uint32 GPTMTAILR;
+	volatile uint32 GPTMTBILR;
+	volatile uint32 GPTMTAMATCHR;
+	volatile uint32 GPTMTBMATCHR;
+	volatile uint32	GPTMTAPR ;
+	volatile uint32 GPTMTBPR;
+	volatile uint32 GPTMTAPMR;
+	volatile uint32 GPTMTBPMR;
+	volatile uint32 GPTMTAR;
+	volatile uint32 GPTMTBR;
+	volatile uint32 GPTMTAV;
+	volatile uint32 GPTMTBV;	
+	volatile uint32 GPTMRTCPD ;
+	volatile uint32 GPTMTAPS;
+	volatile uint32 GPTMTBPS ;
+	volatile uint32 GPTMTAPV;
+	volatile uint32 GPTMTBPV;
+}TIMERS_REG_MAP;
+
+
+#define TIMER0_16_32_BIT      ((volatile TIMERS_REG_MAP*)(0x40030000))
+#define TIMER1_16_32_BIT      ((volatile TIMERS_REG_MAP*)(0x40031000))
+#define TIMER2_16_32_BIT      ((volatile TIMERS_REG_MAP*)(0x40032000))
+#define TIMER3_16_32_BIT      ((volatile TIMERS_REG_MAP*)(0x40033000))
+#define TIMER4_16_32_BIT      ((volatile TIMERS_REG_MAP*)(0x40034000))
+#define TIMER5_16_32_BIT      ((volatile TIMERS_REG_MAP*)(0x40035000))
+	
+#define WTIMER0_32_64_BIT      ((volatile TIMERS_REG_MAP*)(0x40036000))
+#define WTIMER1_32_64_BIT      ((volatile TIMERS_REG_MAP*)(0x40037000))
+#define WTIMER2_32_64_BIT      ((volatile TIMERS_REG_MAP*)(0x4004C000))
+#define WTIMER3_32_64_BIT      ((volatile TIMERS_REG_MAP*)(0x4004D000))
+#define WTIMER4_32_64_BIT      ((volatile TIMERS_REG_MAP*)(0x4004E000))
+#define WTIMER5_32_64_BIT      ((volatile TIMERS_REG_MAP*)(0x4004F000))
 
 
 /**********************************************************************************************************************
