@@ -47,6 +47,7 @@
  
 SYS_CTRL_CLK_CONFIG	SysCtrl_Config[Num_Of_Peripherals_TO_EN]={
 																																{Timer_16_32_Present,0},
+																																{Timer_16_32_Present,1},
 																																{GPIO_Present,5},
 																														 };
 

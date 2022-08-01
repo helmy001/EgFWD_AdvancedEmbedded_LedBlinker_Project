@@ -43,7 +43,7 @@ volatile TIMERS_REG_MAP *Timer_Config_REGS[NUM_OF_TIMERS]={
 																										
 	Parameter 1: Channel_ID -->	TIMER_0	,	TIMER_1, TIMER_2, TIMER_3, TIMER_4 ,TIMER_5, WTIMER_0,WTIMER_1,WTIMER_2,WTIMER_3,WTIMER_4, WTIMER_5	"
   
-	Parameter 2:	Timer_Mode --> " GPT_MODE_NORMAL , GPT_MODE_SLEEP "
+	Parameter 2: Timer_Mode --> " One_Shot_Timer_Mode , Periodic_Timer_Mode , Capture_Mode "
 																										
 	Parameter 3: Count_Mode --> " Count_Down   , Count_Up "
 	
@@ -52,8 +52,8 @@ volatile TIMERS_REG_MAP *Timer_Config_REGS[NUM_OF_TIMERS]={
 ********************************************************************************************************************************************/
 																										
 volatile GPT_CONFIG_TYPE Timers_ConfigSet[Num_Of_Timers_To_Init]={
-																																	{TIMER_0,GPT_MODE_NORMAL,Count_Down,TIMER_16_BIT},
-																																	{TIMER_1,GPT_MODE_NORMAL,Count_Down,TIMER_16_BIT},
+																																	{TIMER_0,Periodic_Timer_Mode,Count_Down,TIMER_32_BIT},
+																																	{TIMER_1,Periodic_Timer_Mode,Count_Down,TIMER_32_BIT},
 																															   };
 
 

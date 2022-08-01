@@ -28,15 +28,16 @@
 *********************************************************************************************************************/
 
 #define NUM_OF_TIMERS 12
- 
-typedef enum
+
+
+typedef uint32 Gpt_Value_Type;
+
+/*typedef enum
 {
 	GPT_MODE_NORMAL ,
 	GPT_MODE_SLEEP
 	
-}GPT_MODETYPE;
-
-typedef uint32 Gpt_Value_Type;
+}GPT_MODETYPE;*/
 
 typedef enum
 {
@@ -87,7 +88,7 @@ typedef struct
 {
 	
 	volatile GPT_CHANNEL_TYPE Channel_ID;
-	volatile GPT_MODETYPE Timer_Mode;
+	volatile GPT_TIMER_MODE Timer_Mode;
 	volatile GPT_TIMER_COUNT_DIR Count_Mode;
 	volatile GPT_TIMER_REG_BITS_NUM NumberOf_Bits;
 	

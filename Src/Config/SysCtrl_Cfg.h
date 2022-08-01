@@ -39,7 +39,7 @@
  
 #define  System_Clock_Divider   1					/* 1 for Enable , 0 for Disable*/
  
-#define Num_Of_Peripherals_TO_EN	2
+#define Num_Of_Peripherals_TO_EN	3
 
 
 

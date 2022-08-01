@@ -31,6 +31,7 @@ extern volatile GPT_CONFIG_TYPE Timers_ConfigSet[Num_Of_Timers_To_Init];
  *  GLOBAL FUNCTIONS PROTOTYPES
  *********************************************************************************************************************/
 void Gpt_StartTimer(GPT_CHANNEL_TYPE,Gpt_Value_Type Value);
+void Clear_Interrupt_Status_Bit(GPT_CHANNEL_TYPE Channel_ID);
 void Gpt_StopTimer(GPT_CHANNEL_TYPE);
 void Gpt_Init(void);
 
