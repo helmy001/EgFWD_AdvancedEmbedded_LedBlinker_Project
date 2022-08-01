@@ -25,7 +25,7 @@
  *********************************************************************************************************************/
 
 
-#define Num_OfInt_TO_ENABLE 3
+#define Num_OfInt_TO_ENABLE 2
 
 #define Int_xGroupPriority_xSub   Int_8GroupPriority_1Sub
 

@@ -37,8 +37,7 @@ volatile GPIO_REG_MAP	*GPIO_Config[Num_Of_Ports]={
 
 																													//PIN_NUM	,Direction  ,ouput_current,internal_config
 volatile PIN_CONFIG Pin_Config[Num_Of_Pins_To_Init] ={	
-																													{PORTF_F1,OUTPUT_PIN,Current_4mA,  Pull_Up},
-																													{PORTF_F4,INPUT_PIN,Current_4mA,  Normal}	
+																													{PORTF_F2,OUTPUT_PIN,Current_8mA,Normal},
 																										 };
 				 
  

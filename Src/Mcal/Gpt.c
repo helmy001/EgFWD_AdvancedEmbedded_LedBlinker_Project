@@ -81,11 +81,11 @@ void Clear_Interrupt_Status_Bit(GPT_CHANNEL_TYPE Channel_ID)
 {
 	//Clear teh status flag by writing one to GPTMICR Reg
  #if TIMERx_A_STATE==ENABLE
-	SIT_BIT(Timer_Config_REGS[Channel_ID]->GPTMRIS,0);
+	SIT_BIT(Timer_Config_REGS[Channel_ID]->GPTMICR,0);
  #endif
  
 	#if TIMERx_B_STATE==ENABLE
- 	SIT_BIT(Timer_Config_REGS[Channel_ID]->GPTMRIS,8);
+ 	SIT_BIT(Timer_Config_REGS[Channel_ID]->GPTMICR,8);
  #endif	
 }
 

@@ -44,7 +44,8 @@
 				SIT_BIT(GPIO_Config[Pin_Config[i].Pin_Num/8]->GPIO_INTERNAL[Pin_Config[i].Pin_Internal],Pin_Config[i].Pin_Num%8);
 			}
 			
-			
+			//Enable The digital functions for the corresponding pin
+			SIT_BIT(GPIO_Config[Pin_Config[i].Pin_Num/8]->GPIODEN,Pin_Config[i].Pin_Num%8);
 	 }
  }
  
