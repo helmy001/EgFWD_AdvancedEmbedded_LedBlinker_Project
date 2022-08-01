@@ -406,6 +406,70 @@ typedef struct
 
 
 
+
+typedef struct
+{
+	
+	volatile uint32 TAEN 	 :1   ;
+	volatile uint32 TASTALL:1   ;
+	volatile uint32 TAEVENT:2   ;
+	volatile uint32 RTCEN  :1   ;
+	volatile uint32 TAOTE  :1   ;
+	volatile uint32 TAPWML :1   ;
+	volatile uint32   		 :1   ;
+	volatile uint32 TBEN   :1   ;
+	volatile uint32 TBSTALL:1   ;
+	volatile uint32 TBEVENT:2   ;
+	volatile uint32   		 :1   ;
+	volatile uint32  TBOTE :1   ;
+	volatile uint32  TBPWML:1   ;
+	volatile uint32   		 :17  ;
+	
+	
+}GPTMCTL_BF;
+
+
+
+
+
+
+
+
+
+typedef struct
+{
+	
+	volatile uint32 TNMR 	 :2   ;
+	volatile uint32 TNCMR	 :1   ;
+	volatile uint32 TNAMS	 :1   ;
+	volatile uint32 TNCDIR :1   ;
+	volatile uint32 TNMIE  :1   ;
+	volatile uint32 TNWOT  :1   ;
+	volatile uint32 TNSNAPS:1   ;
+	volatile uint32 TNILD  :1   ;
+	volatile uint32 TNPWMIE:1   ;
+	volatile uint32 TNMRSU :1   ;
+	volatile uint32 TNPLO	 :1   ;
+	volatile uint32   		 :20  ;
+
+}GPTMTnMR_BF;
+
+
+
+
+typedef union
+{
+	volatile uint32 R;
+	volatile GPTMTnMR_BF B;
+	
+}GPTMTnMR;
+
+typedef union
+{
+	volatile uint32 R;
+	volatile GPTMCTL_BF B;
+	
+}GPTMCTL_Tag;
 typedef union
 {
 	volatile uint32 R;
@@ -738,9 +802,9 @@ typedef struct
 typedef struct
 {
 	volatile uint32 GPTMCFG;
-	volatile uint32 GPTMTAMR;
-	volatile uint32 GPTMTBMR;
-	volatile uint32 GPTMCTL;
+	volatile GPTMTnMR GPTMTAMR;
+	volatile GPTMTnMR GPTMTBMR;
+	volatile GPTMCTL_Tag GPTMCTL;
 	volatile uint32 GPTMSYNC;
 	volatile uint32 RESERVED1;
 	volatile uint32 GPTMIMR;

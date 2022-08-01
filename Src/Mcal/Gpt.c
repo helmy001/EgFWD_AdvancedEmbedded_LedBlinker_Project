@@ -39,6 +39,38 @@
  *  GLOBAL FUNCTIONS
  *********************************************************************************************************************/
 
+void Gpt_Init(void)
+{
+		for(uint8 i=0;i<Num_Of_Timers_To_Init;i++)
+		{
+				//Ensure the timer is disabled
+				Timer_Config_REGS[Timers_ConfigSet[i].Channel_ID]->GPTMCTL.B.TAEN=0;
+				Timer_Config_REGS[Timers_ConfigSet[i].Channel_ID]->GPTMCTL.B.TBEN=0;
+				//Set the num of bits of timer register
+			  Timer_Config_REGS[Timers_ConfigSet[i].Channel_ID]->GPTMCFG|=(Timers_ConfigSet[i].NumberOf_Bits&0x7);
+			  
+				//Select the mode of the Timer
+			  #if TIMERx_A_STATE==ENABLE
+					Timer_Config_REGS[Timers_ConfigSet[i].Channel_ID]->GPTMTAMR.B.TNMR=Timers_ConfigSet[i].Timer_Mode;
+				#endif
+			
+				#if TIMERx_B_STATE==ENABLE
+					Timer_Config_REGS[Timers_ConfigSet[i].Channel_ID]->GPTMTBMR.B.TNMR=Timers_ConfigSet[i].Timer_Mode;
+			  #endif
+			 
+		}
+}
+
+void Gpt_StartTimer(GPT_CHANNEL_TYPE,Gpt_Value_Type Value)
+{
+
+}
+
+void Gpt_StopTimer(GPT_CHANNEL_TYPE)
+{
+
+}
+
 
 
 /**********************************************************************************************************************

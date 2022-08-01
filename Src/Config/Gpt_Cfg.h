@@ -22,9 +22,13 @@
  /**********************************************************************************************************************
  *  GLOBAL CONSTANT MACROS
  *********************************************************************************************************************/
+ #define ENABLE 1
+ #define DISABLE 0
+	 
+ #define Num_Of_Timers_To_Init 2
  
- #define Num_Of_Timers_To_Init 1
- 
+ #define TIMERx_A_STATE ENABLE
+ #define TIMERx_B_STATE DISABLE
  
  
  

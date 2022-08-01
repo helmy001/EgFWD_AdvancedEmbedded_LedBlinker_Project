@@ -21,20 +21,20 @@
  *********************************************************************************************************************/
 
 
-volatile TIMERS_REG_MAP Timer_Config[NUM_OF_TIMERS]={
-																											TIMER0_16_32_BIT,
-																											TIMER1_16_32_BIT,
-																											TIMER2_16_32_BIT,
-																											TIMER3_16_32_BIT,
-																											TIMER4_16_32_BIT,
-																											TIMER5_16_32_BIT,
-																											WTIMER0_32_64_BIT,
-																											WTIMER1_32_64_BIT,
-																											WTIMER2_32_64_BIT,
-																											WTIMER3_32_64_BIT,
-																											WTIMER4_32_64_BIT,
-																											WTIMER5_32_64_BIT
-																										};
+volatile TIMERS_REG_MAP *Timer_Config_REGS[NUM_OF_TIMERS]={
+																														TIMER0_16_32_BIT,
+																														TIMER1_16_32_BIT,
+																														TIMER2_16_32_BIT,
+																														TIMER3_16_32_BIT,
+																														TIMER4_16_32_BIT,
+																														TIMER5_16_32_BIT,
+																														WTIMER0_32_64_BIT,
+																														WTIMER1_32_64_BIT,
+																														WTIMER2_32_64_BIT,
+																														WTIMER3_32_64_BIT,
+																														WTIMER4_32_64_BIT,
+																														WTIMER5_32_64_BIT
+																													};
 
 																										
 
@@ -51,10 +51,10 @@ volatile TIMERS_REG_MAP Timer_Config[NUM_OF_TIMERS]={
 																												
 ********************************************************************************************************************************************/
 																										
-volatile GPT_CONFIG_TYPE Timers_Config[Num_Of_Timers_To_Init]={
-																																{TIMER_0,GPT_MODE_NORMAL,Count_Down,TIMER_16_BIT},
-																																{TIMER_1,GPT_MODE_NORMAL,Count_Down,TIMER_16_BIT},
-																															};
+volatile GPT_CONFIG_TYPE Timers_ConfigSet[Num_Of_Timers_To_Init]={
+																																	{TIMER_0,GPT_MODE_NORMAL,Count_Down,TIMER_16_BIT},
+																																	{TIMER_1,GPT_MODE_NORMAL,Count_Down,TIMER_16_BIT},
+																															   };
 
 
 

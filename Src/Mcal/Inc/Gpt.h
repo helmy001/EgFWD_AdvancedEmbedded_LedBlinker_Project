@@ -23,14 +23,16 @@
  *  GLOBAL CONSTANT MACROS
  *********************************************************************************************************************/
 
-extern volatile TIMERS_REG_MAP Timer_Config[NUM_OF_TIMERS];
-
+extern volatile TIMERS_REG_MAP *Timer_Config_REGS[NUM_OF_TIMERS];
+extern volatile GPT_CONFIG_TYPE Timers_ConfigSet[Num_Of_Timers_To_Init];
 
 
 /**********************************************************************************************************************
  *  GLOBAL FUNCTIONS PROTOTYPES
  *********************************************************************************************************************/
-
+void Gpt_StartTimer(GPT_CHANNEL_TYPE,Gpt_Value_Type Value);
+void Gpt_StopTimer(GPT_CHANNEL_TYPE);
+void Gpt_Init(void);
 
 
 #endif

@@ -36,6 +36,7 @@ typedef enum
 	
 }GPT_MODETYPE;
 
+typedef uint32 Gpt_Value_Type;
 
 typedef enum
 {
